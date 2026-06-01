@@ -50,7 +50,7 @@ CSV Quick Look is built from source — a two-minute process.
 ### 1. Clone
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/csv-quick-look.git
+git clone https://github.com/adamorad/csv-quick-look.git
 cd csv-quick-look
 ```
 
@@ -125,11 +125,11 @@ The JS/CSS frontend can be iterated without rebuilding the Swift target — edit
 
 ## Star history
 
-<a href="https://star-history.com/#YOUR_USERNAME/csv-quick-look&Date">
+<a href="https://star-history.com/#adamorad/csv-quick-look&Date">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=YOUR_USERNAME/csv-quick-look&type=Date&theme=dark" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=YOUR_USERNAME/csv-quick-look&type=Date" />
-    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=YOUR_USERNAME/csv-quick-look&type=Date" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=adamorad/csv-quick-look&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=adamorad/csv-quick-look&type=Date" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=adamorad/csv-quick-look&type=Date" />
   </picture>
 </a>
 
