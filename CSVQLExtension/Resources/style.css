@@ -1,0 +1,302 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+  --font-mono: "SF Mono", "Menlo", "Consolas", monospace;
+  --row-height: 28px;
+  --header-height: 32px;
+  --toolbar-height: 40px;
+  --radius: 6px;
+  --transition: 120ms ease;
+}
+
+/* ─── Light theme ─────────────────────────────────────────────── */
+.theme-light {
+  --bg:          #ffffff;
+  --bg-toolbar:  #f5f5f7;
+  --bg-header:   #f0f0f2;
+  --bg-row-even: #ffffff;
+  --bg-row-odd:  #fafafa;
+  --bg-row-hover:#e8f3ff;
+  --border:      rgba(0,0,0,0.09);
+  --border-header: rgba(0,0,0,0.14);
+  --text:        #1d1d1f;
+  --text-dim:    #6e6e73;
+  --text-header: #3c3c43;
+  --accent:      #0071e3;
+  --sort-arrow:  rgba(0,0,0,0.35);
+  --search-bg:   #ffffff;
+  --search-border: rgba(0,0,0,0.18);
+  --scrollbar-thumb: rgba(0,0,0,0.18);
+  --scrollbar-track: transparent;
+}
+
+/* ─── Dark theme ──────────────────────────────────────────────── */
+.theme-dark {
+  --bg:          #1e1e1e;
+  --bg-toolbar:  #2a2a2a;
+  --bg-header:   #2d2d2f;
+  --bg-row-even: #1e1e1e;
+  --bg-row-odd:  #222222;
+  --bg-row-hover:#1a3152;
+  --border:      rgba(255,255,255,0.08);
+  --border-header: rgba(255,255,255,0.12);
+  --text:        #f0f0f0;
+  --text-dim:    #8e8e93;
+  --text-header: #d0d0d5;
+  --accent:      #409cff;
+  --sort-arrow:  rgba(255,255,255,0.4);
+  --search-bg:   #2d2d2f;
+  --search-border: rgba(255,255,255,0.14);
+  --scrollbar-thumb: rgba(255,255,255,0.18);
+  --scrollbar-track: transparent;
+}
+
+/* ─── Base ────────────────────────────────────────────────────── */
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 13px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Toolbar ─────────────────────────────────────────────────── */
+#toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--toolbar-height);
+  padding: 0 12px;
+  background: var(--bg-toolbar);
+  border-bottom: 0.5px solid var(--border-header);
+  flex-shrink: 0;
+  gap: 12px;
+  position: relative;
+  z-index: 10;
+}
+
+#file-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 280px;
+  flex-shrink: 1;
+}
+
+#toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+#search-input {
+  width: 180px;
+  height: 26px;
+  padding: 0 10px;
+  background: var(--search-bg);
+  border: 0.5px solid var(--search-border);
+  border-radius: 6px;
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+#search-input::placeholder {
+  color: var(--text-dim);
+}
+
+#search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+#status-text {
+  font-size: 11px;
+  color: var(--text-dim);
+  white-space: nowrap;
+  min-width: 140px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Table container ─────────────────────────────────────────── */
+#table-container {
+  position: absolute;
+  top: var(--toolbar-height);
+  left: 0; right: 0; bottom: 0;
+  overflow: auto;
+  background: var(--bg);
+  will-change: transform;
+}
+
+#table-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+#table-container::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+#table-container::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+
+/* ─── Table ───────────────────────────────────────────────────── */
+#csv-table {
+  border-collapse: collapse;
+  width: max-content;
+  min-width: 100%;
+  table-layout: fixed;
+}
+
+/* ─── Header ──────────────────────────────────────────────────── */
+#csv-thead {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+#csv-thead th {
+  height: var(--header-height);
+  padding: 0 10px;
+  background: var(--bg-header);
+  color: var(--text-header);
+  font-size: 11.5px;
+  font-weight: 600;
+  text-align: left;
+  letter-spacing: 0.01em;
+  border-right: 0.5px solid var(--border);
+  border-bottom: 0.5px solid var(--border-header);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  min-width: 80px;
+  max-width: 320px;
+}
+
+#csv-thead th:last-child {
+  border-right: none;
+}
+
+#csv-thead th:hover {
+  background: color-mix(in srgb, var(--bg-header) 80%, var(--accent) 20%);
+}
+
+/* Sort arrow indicator */
+#csv-thead th::after {
+  content: '';
+  position: absolute;
+  right: 7px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+#csv-thead th.sort-asc::after {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 5px solid var(--sort-arrow);
+  opacity: 1;
+}
+
+#csv-thead th.sort-desc::after {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid var(--sort-arrow);
+  opacity: 1;
+}
+
+/* Row number column */
+#csv-thead th.row-num-col,
+#csv-tbody td.row-num-col {
+  color: var(--text-dim);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  min-width: 48px;
+  max-width: 48px;
+  width: 48px;
+  cursor: default;
+  padding-right: 10px;
+  background: color-mix(in srgb, var(--bg-header) 60%, var(--bg) 40%) !important;
+  border-right: 0.5px solid var(--border-header) !important;
+}
+
+#csv-thead th.row-num-col {
+  pointer-events: none;
+}
+
+/* ─── Body rows ───────────────────────────────────────────────── */
+#csv-tbody tr:nth-child(even) td { background: var(--bg-row-even); }
+#csv-tbody tr:nth-child(odd)  td { background: var(--bg-row-odd); }
+#csv-tbody tr:hover td { background: var(--bg-row-hover); }
+
+#csv-tbody td {
+  height: var(--row-height);
+  padding: 0 10px;
+  font-size: 12.5px;
+  font-family: var(--font-mono);
+  border-right: 0.5px solid var(--border);
+  border-bottom: 0.5px solid var(--border);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 320px;
+}
+
+#csv-tbody td:last-child { border-right: none; }
+
+/* ─── Spacers for virtual scroll ──────────────────────────────── */
+#top-spacer, #bottom-spacer {
+  width: 100%;
+  pointer-events: none;
+}
+
+/* ─── Empty state ─────────────────────────────────────────────── */
+#empty-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--text-dim);
+  font-size: 13px;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* ─── Truncation notice ───────────────────────────────────────── */
+#truncation-notice {
+  display: none;
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  background: color-mix(in srgb, var(--accent) 15%, var(--bg) 85%);
+  border: 0.5px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  color: var(--text);
+  font-size: 11.5px;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  z-index: 20;
+  pointer-events: none;
+}

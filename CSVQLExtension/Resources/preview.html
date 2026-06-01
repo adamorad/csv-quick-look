@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSV Preview</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-light">
+
+<div id="toolbar">
+  <span id="file-name"></span>
+  <div id="toolbar-right">
+    <input id="search-input" type="text" placeholder="Filter rows…" autocomplete="off" spellcheck="false">
+    <span id="status-text"></span>
+  </div>
+</div>
+
+<div id="table-container">
+  <div id="top-spacer"></div>
+  <table id="csv-table">
+    <thead id="csv-thead"></thead>
+    <tbody id="csv-tbody"></tbody>
+  </table>
+  <div id="bottom-spacer"></div>
+</div>
+
+<script src="table.js"></script>
+</body>
+</html>

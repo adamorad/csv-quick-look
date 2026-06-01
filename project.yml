@@ -1,0 +1,69 @@
+name: CSVQuickLook
+
+options:
+  deploymentTarget:
+    macOS: "12.0"
+  bundleIdPrefix: com.adammorad
+  createIntermediateGroups: true
+  groupSortPosition: bottom
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MACOSX_DEPLOYMENT_TARGET: "12.0"
+    DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
+    ENABLE_HARDENED_RUNTIME: YES
+
+targets:
+  CSVQuickLook:
+    type: application
+    platform: macOS
+    deploymentTarget: "12.0"
+    sources:
+      - path: CSVQuickLook
+        excludes:
+          - "**/*.entitlements"
+      - path: Shared
+    info:
+      path: CSVQuickLook/Info.plist
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.adammorad.csvquicklook
+      PRODUCT_NAME: "CSV Quick Look"
+      ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+      CODE_SIGN_ENTITLEMENTS: CSVQuickLook/CSVQuickLook.entitlements
+      COMBINE_HIDPI_IMAGES: YES
+    dependencies:
+      - target: CSVQLExtension
+        embed: true
+        codeSign: true
+
+  CSVQLExtension:
+    type: app-extension
+    platform: macOS
+    deploymentTarget: "12.0"
+    sources:
+      - path: CSVQLExtension
+        excludes:
+          - Resources/**
+          - "**/*.entitlements"
+      - path: Shared
+    resources:
+      - path: CSVQLExtension/Resources
+    info:
+      path: CSVQLExtension/Info.plist
+      properties:
+        CFBundleDisplayName: CSV Quick Look
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.quicklook.preview
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).PreviewViewController
+          NSExtensionAttributes:
+            QLSupportedContentTypes:
+              - com.apple.csv
+              - public.tab-separated-values
+              - public.comma-separated-values
+            QLIsDataBasedPreview: false
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.adammorad.csvquicklook.extension
+      PRODUCT_NAME: CSVQLExtension
+      CODE_SIGN_ENTITLEMENTS: CSVQLExtension/CSVQLExtension.entitlements
+      SKIP_INSTALL: YES

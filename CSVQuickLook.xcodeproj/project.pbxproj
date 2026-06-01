@@ -1,0 +1,444 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		054F533DCA828F97B01605BA /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904609806B2CCB78145F6229 /* PreviewViewController.swift */; };
+		38E86F652B0FC92B8C67DF77 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDBF8A210B24F9FD6C9F1EB /* ContentView.swift */; };
+		6CD3325E477E237E0DC68468 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7CECCC5E72FA53BC38D439 /* CSVParser.swift */; };
+		75731DCD137E6A764E509372 /* CSVQLExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = EECE64AFCAF3568BBD02C025 /* CSVQLExtension.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7792B1B70013ED33C3496DB8 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7CECCC5E72FA53BC38D439 /* CSVParser.swift */; };
+		BDB2478B3C4B81FCAC045BBC /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70477E310E7BB704778B9067 /* App.swift */; };
+		F91175AF08EAEB7DEBB66447 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66D8377C766B799FB4500E30 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9D1918DC0A155B1B9BC67160 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9FDC5905CC511E79417CC1BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 698B1182782FE95E350A6A60;
+			remoteInfo = CSVQLExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9F250D4F009922B9D3CD7B44 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				75731DCD137E6A764E509372 /* CSVQLExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2DDBF8A210B24F9FD6C9F1EB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5383B1621AC9373DFFB3D664 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		66D8377C766B799FB4500E30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		70477E310E7BB704778B9067 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		811005502F667610332C7963 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8E16FB88D7474D0EF7759026 /* CSVQuickLook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSVQuickLook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		904609806B2CCB78145F6229 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
+		BD7CECCC5E72FA53BC38D439 /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
+		EECE64AFCAF3568BBD02C025 /* CSVQLExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CSVQLExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		17E923E2E29C69F37C04F132 /* CSVQLExtension */ = {
+			isa = PBXGroup;
+			children = (
+				5383B1621AC9373DFFB3D664 /* Info.plist */,
+				904609806B2CCB78145F6229 /* PreviewViewController.swift */,
+			);
+			path = CSVQLExtension;
+			sourceTree = "<group>";
+		};
+		24809F563680F92BE785CDC5 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				BD7CECCC5E72FA53BC38D439 /* CSVParser.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		93EA597FA338AED5D638D173 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EECE64AFCAF3568BBD02C025 /* CSVQLExtension.appex */,
+				8E16FB88D7474D0EF7759026 /* CSVQuickLook.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A31224B3C10CFCEE4B513143 = {
+			isa = PBXGroup;
+			children = (
+				17E923E2E29C69F37C04F132 /* CSVQLExtension */,
+				EE7979394179B4370E08DCDE /* CSVQuickLook */,
+				24809F563680F92BE785CDC5 /* Shared */,
+				93EA597FA338AED5D638D173 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EE7979394179B4370E08DCDE /* CSVQuickLook */ = {
+			isa = PBXGroup;
+			children = (
+				70477E310E7BB704778B9067 /* App.swift */,
+				66D8377C766B799FB4500E30 /* Assets.xcassets */,
+				2DDBF8A210B24F9FD6C9F1EB /* ContentView.swift */,
+				811005502F667610332C7963 /* Info.plist */,
+			);
+			path = CSVQuickLook;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		698B1182782FE95E350A6A60 /* CSVQLExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 969D27CF731EB25E1F494F0B /* Build configuration list for PBXNativeTarget "CSVQLExtension" */;
+			buildPhases = (
+				F35D541471C0F899518D6B07 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CSVQLExtension;
+			packageProductDependencies = (
+			);
+			productName = CSVQLExtension;
+			productReference = EECE64AFCAF3568BBD02C025 /* CSVQLExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		91C669CE6356E1C509946E58 /* CSVQuickLook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB16D7D806AAE23C301D2237 /* Build configuration list for PBXNativeTarget "CSVQuickLook" */;
+			buildPhases = (
+				893FE2B865D3BED7ECF3FA63 /* Sources */,
+				1DB96CDDDC89972751C92E26 /* Resources */,
+				9F250D4F009922B9D3CD7B44 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3E39B502B6F682EE87C395A3 /* PBXTargetDependency */,
+			);
+			name = CSVQuickLook;
+			packageProductDependencies = (
+			);
+			productName = CSVQuickLook;
+			productReference = 8E16FB88D7474D0EF7759026 /* CSVQuickLook.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9FDC5905CC511E79417CC1BD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = E5BA5AD02EFB3D4ECFB33D19 /* Build configuration list for PBXProject "CSVQuickLook" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = A31224B3C10CFCEE4B513143;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 93EA597FA338AED5D638D173 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				698B1182782FE95E350A6A60 /* CSVQLExtension */,
+				91C669CE6356E1C509946E58 /* CSVQuickLook */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1DB96CDDDC89972751C92E26 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F91175AF08EAEB7DEBB66447 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		893FE2B865D3BED7ECF3FA63 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDB2478B3C4B81FCAC045BBC /* App.swift in Sources */,
+				6CD3325E477E237E0DC68468 /* CSVParser.swift in Sources */,
+				38E86F652B0FC92B8C67DF77 /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F35D541471C0F899518D6B07 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7792B1B70013ED33C3496DB8 /* CSVParser.swift in Sources */,
+				054F533DCA828F97B01605BA /* PreviewViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3E39B502B6F682EE87C395A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 698B1182782FE95E350A6A60 /* CSVQLExtension */;
+			targetProxy = 9D1918DC0A155B1B9BC67160 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2E49F9A07F3002DFC8848A41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CSVQLExtension/CSVQLExtension.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = CSVQLExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adammorad.csvquicklook.extension;
+				PRODUCT_NAME = CSVQLExtension;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		64EFF5D3420F8FF78912CC41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		82ABB7F7A226926CC928BE03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CSVQLExtension/CSVQLExtension.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = CSVQLExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adammorad.csvquicklook.extension;
+				PRODUCT_NAME = CSVQLExtension;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		C2334B59401CD1AEBFF151A4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CSVQuickLook/CSVQuickLook.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = CSVQuickLook/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adammorad.csvquicklook;
+				PRODUCT_NAME = "CSV Quick Look";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		CBDF55F3D6E5ACA672E36CB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CSVQuickLook/CSVQuickLook.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = CSVQuickLook/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adammorad.csvquicklook;
+				PRODUCT_NAME = "CSV Quick Look";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		CC3EDC7CD44F08A7BC58A15C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		969D27CF731EB25E1F494F0B /* Build configuration list for PBXNativeTarget "CSVQLExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E49F9A07F3002DFC8848A41 /* Debug */,
+				82ABB7F7A226926CC928BE03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		AB16D7D806AAE23C301D2237 /* Build configuration list for PBXNativeTarget "CSVQuickLook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2334B59401CD1AEBFF151A4 /* Debug */,
+				CBDF55F3D6E5ACA672E36CB2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E5BA5AD02EFB3D4ECFB33D19 /* Build configuration list for PBXProject "CSVQuickLook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC3EDC7CD44F08A7BC58A15C /* Debug */,
+				64EFF5D3420F8FF78912CC41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9FDC5905CC511E79417CC1BD /* Project object */;
+}
