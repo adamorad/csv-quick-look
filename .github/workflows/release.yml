@@ -49,6 +49,7 @@ jobs:
             --clobber
 
       - name: Update Homebrew tap
+        if: ${{ secrets.TAP_TOKEN != '' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAP_TOKEN: ${{ secrets.TAP_TOKEN }}
