@@ -8,7 +8,7 @@
 ![Swift](https://img.shields.io/badge/Swift-5.9-orange?logo=swift&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
-![preview-light](screenshots/preview-light.png)
+![demo](screenshots/demo.gif)
 
 </div>
 
