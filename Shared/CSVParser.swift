@@ -29,8 +29,30 @@ enum CSVParser {
 
     static func detectDelimiter(in sample: String) -> Character {
         let candidates: [Character] = [",", "\t", ";", "|"]
+        var counts: [Character: Int] = [:]
+        for c in candidates { counts[c] = 0 }
+
+        var inQuotes = false
+        var idx = sample.startIndex
+        while idx < sample.endIndex {
+            let ch = sample[idx]
+            if ch == "\"" {
+                // Look ahead for escaped quote ""
+                let next = sample.index(after: idx)
+                if inQuotes && next < sample.endIndex && sample[next] == "\"" {
+                    // Escaped quote inside a quoted field — skip both characters
+                    idx = sample.index(after: next)
+                    continue
+                }
+                inQuotes.toggle()
+            } else if !inQuotes, let _ = counts[ch] {
+                counts[ch, default: 0] += 1
+            }
+            idx = sample.index(after: idx)
+        }
+
         return candidates.max { a, b in
-            sample.filter { $0 == a }.count < sample.filter { $0 == b }.count
+            (counts[a] ?? 0) < (counts[b] ?? 0)
         } ?? ","
     }
 
@@ -50,7 +72,7 @@ enum CSVParser {
             if fields.count == 1 && fields[0].isEmpty { continue }
 
             totalRowCount += 1
-            if parsedRows.count <= maxRows {
+            if parsedRows.count < maxRows {
                 parsedRows.append(fields)
             }
         }
