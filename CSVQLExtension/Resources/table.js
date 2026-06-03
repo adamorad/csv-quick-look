@@ -107,7 +107,6 @@ function renderWindow(newStart) {
 function onScroll() {
   var container = document.getElementById('table-container');
   var newScrollTop = container.scrollTop;
-  if (Math.abs(newScrollTop - scrollTop) < ROW_H * 5) return; // debounce small movements
   scrollTop = newScrollTop;
   var newStart = Math.floor(scrollTop / ROW_H) - 10;
   renderWindow(newStart);
@@ -222,5 +221,6 @@ function escapeHtml(s) {
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
