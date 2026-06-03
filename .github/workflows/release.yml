@@ -1,0 +1,85 @@
+name: Release
+
+on:
+  release:
+    types: [created]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: |
+          xcodebuild \
+            -project CSVQuickLook.xcodeproj \
+            -scheme CSVQuickLook \
+            -configuration Release \
+            -derivedDataPath build/DerivedData \
+            CODE_SIGN_IDENTITY="-" \
+            CODE_SIGNING_REQUIRED=YES \
+            CODE_SIGNING_ALLOWED=YES \
+            ENABLE_HARDENED_RUNTIME=NO \
+            PRODUCT_BUNDLE_IDENTIFIER=com.adammorad.csvquicklook
+
+      - name: Package
+        run: |
+          APP="build/DerivedData/Build/Products/Release/CSV Quick Look.app"
+          mkdir -p dist
+          cp -r "$APP" dist/
+          cd dist
+          zip -r --symlinks "CSV.Quick.Look.zip" "CSV Quick Look.app"
+          SHA=$(shasum -a 256 CSV.Quick.Look.zip | awk '{print $1}')
+          echo "SHA256=$SHA" >> $GITHUB_ENV
+          echo "### Build info" >> $GITHUB_STEP_SUMMARY
+          echo "SHA256: \`$SHA\`" >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload to release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          gh release upload "$RELEASE_TAG" \
+            dist/CSV.Quick.Look.zip \
+            --clobber
+
+      - name: Update Homebrew tap
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAP_TOKEN: ${{ secrets.TAP_TOKEN }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          TAG="$RELEASE_TAG"
+          VERSION="${TAG#v}"
+          SHA="${{ env.SHA256 }}"
+          URL="https://github.com/adamorad/csv-quick-look/releases/download/${TAG}/CSV.Quick.Look.zip"
+
+          git clone "https://x-access-token:${TAP_TOKEN}@github.com/adamorad/homebrew-tap.git" tap
+          cd tap
+
+          cat > Casks/csv-quick-look.rb << CASK
+          cask "csv-quick-look" do
+            version "${VERSION}"
+            sha256 "${SHA}"
+
+            url "${URL}"
+            name "CSV Quick Look"
+            desc "QuickLook extension for CSV and TSV files"
+            homepage "https://github.com/adamorad/csv-quick-look"
+
+            app "CSV Quick Look.app"
+
+            zap trash: "~/Library/Preferences/com.adammorad.csvquicklook.plist"
+          end
+          CASK
+
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add Casks/csv-quick-look.rb
+          git commit -m "Update csv-quick-look to ${VERSION}"
+          git push
