@@ -1,8 +1,10 @@
 import SwiftUI
 
+private let sharedDefaults = UserDefaults(suiteName: "group.com.adammorad.csvquicklook")!
+
 struct ContentView: View {
-    @AppStorage("maxRows") private var maxRows: Double = 100_000
-    @AppStorage("autoDetectDelimiter") private var autoDetectDelimiter: Bool = true
+    @State private var maxRows: Double = sharedDefaults.object(forKey: "maxRows") as? Double ?? 100_000
+    @State private var autoDetectDelimiter: Bool = sharedDefaults.object(forKey: "autoDetectDelimiter") as? Bool ?? true
 
     var body: some View {
         VStack(spacing: 0) {
@@ -13,6 +15,12 @@ struct ContentView: View {
             footerSection
         }
         .frame(minWidth: 480, minHeight: 380)
+        .onChange(of: maxRows) { newValue in
+            sharedDefaults.set(newValue, forKey: "maxRows")
+        }
+        .onChange(of: autoDetectDelimiter) { newValue in
+            sharedDefaults.set(newValue, forKey: "autoDetectDelimiter")
+        }
     }
 
     // MARK: - Sections
