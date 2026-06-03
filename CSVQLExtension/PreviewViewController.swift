@@ -29,9 +29,10 @@ class PreviewViewController: NSViewController, QLPreviewingController {
                 handler(PreviewError.unsupportedEncoding); return
             }
 
-            let storedMax = UserDefaults.standard.integer(forKey: "maxRows")
-            let maxRows = storedMax > 0 ? storedMax : 100_000
-            let autoDetect = UserDefaults.standard.object(forKey: "autoDetectDelimiter") as? Bool ?? true
+            let sharedDefaults = UserDefaults(suiteName: "group.com.adammorad.csvquicklook") ?? .standard
+            let storedMax = sharedDefaults.object(forKey: "maxRows") as? Double ?? 0
+            let maxRows = storedMax > 0 ? Int(storedMax) : 100_000
+            let autoDetect = sharedDefaults.object(forKey: "autoDetectDelimiter") as? Bool ?? true
             let delimiter: Character? = autoDetect ? nil : ","
             let result = CSVParser.parse(text, delimiter: delimiter, maxRows: maxRows)
 
