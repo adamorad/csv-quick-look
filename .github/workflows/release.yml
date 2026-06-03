@@ -14,27 +14,65 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Import Developer ID certificate
+        env:
+          CERT_BASE64: ${{ secrets.DEVELOPER_ID_APPLICATION_CERT }}
+          CERT_PASSWORD: ${{ secrets.DEVELOPER_ID_APPLICATION_CERT_PASSWORD }}
+        run: |
+          KEYCHAIN_PATH=$RUNNER_TEMP/signing.keychain
+          CERT_PATH=$RUNNER_TEMP/cert.p12
+
+          echo "$CERT_BASE64" | base64 --decode -o "$CERT_PATH"
+
+          security create-keychain -p "" "$KEYCHAIN_PATH"
+          security set-keychain-settings -lut 21600 "$KEYCHAIN_PATH"
+          security unlock-keychain -p "" "$KEYCHAIN_PATH"
+          security import "$CERT_PATH" -k "$KEYCHAIN_PATH" -P "$CERT_PASSWORD" -T /usr/bin/codesign
+          security list-keychain -d user -s "$KEYCHAIN_PATH"
+          security set-key-partition-list -S apple-tool:,apple: -k "" "$KEYCHAIN_PATH"
+
       - name: Build
+        env:
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         run: |
           xcodebuild \
             -project CSVQuickLook.xcodeproj \
             -scheme CSVQuickLook \
             -configuration Release \
             -derivedDataPath build/DerivedData \
-            CODE_SIGN_IDENTITY="-" \
-            CODE_SIGNING_REQUIRED=YES \
-            CODE_SIGNING_ALLOWED=YES \
-            ENABLE_HARDENED_RUNTIME=NO \
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY="Developer ID Application" \
+            DEVELOPMENT_TEAM="$APPLE_TEAM_ID" \
             PRODUCT_BUNDLE_IDENTIFIER=com.adammorad.csvquicklook
 
-      - name: Package
+      - name: Package and notarize
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_APP_PASSWORD: ${{ secrets.APPLE_APP_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         run: |
           APP="build/DerivedData/Build/Products/Release/CSV Quick Look.app"
           mkdir -p dist
-          cp -r "$APP" dist/
-          cd dist
-          zip -r --symlinks CSV.Quick.Look.zip "CSV Quick Look.app"
-          SHA=$(shasum -a 256 CSV.Quick.Look.zip | awk '{print $1}')
+
+          # Zip for notarization
+          ditto -c -k --keepParent "$APP" dist/CSV.Quick.Look.zip
+
+          # Notarize
+          xcrun notarytool submit dist/CSV.Quick.Look.zip \
+            --apple-id "$APPLE_ID" \
+            --password "$APPLE_APP_PASSWORD" \
+            --team-id "$APPLE_TEAM_ID" \
+            --wait
+
+          # Staple the ticket to the app
+          xcrun stapler staple "$APP"
+
+          # Re-zip with stapled app
+          rm dist/CSV.Quick.Look.zip
+          ditto -c -k --keepParent "$APP" dist/CSV.Quick.Look.zip
+
+          # Compute SHA256
+          SHA=$(shasum -a 256 dist/CSV.Quick.Look.zip | awk '{print $1}')
           echo "SHA256=$SHA" >> "$GITHUB_ENV"
           echo "SHA256: $SHA" >> "$GITHUB_STEP_SUMMARY"
 
@@ -51,7 +89,7 @@ jobs:
           RELEASE_TAG: ${{ github.event.release.tag_name }}
         run: |
           if [ -z "$TAP_TOKEN" ]; then
-            echo "TAP_TOKEN secret not set — skipping tap update"
+            echo "TAP_TOKEN not set — skipping tap update"
             exit 0
           fi
 
@@ -62,7 +100,7 @@ jobs:
           git clone "https://x-access-token:${TAP_TOKEN}@github.com/adamorad/homebrew-tap.git" tap
           cd tap
 
-          printf 'cask "csv-quick-look" do\n  version "%s"\n  sha256 "%s"\n\n  url "%s"\n  name "CSV Quick Look"\n  desc "QuickLook extension for CSV and TSV files"\n  homepage "https://github.com/adamorad/csv-quick-look"\n\n  app "CSV Quick Look.app"\n\n  zap trash: "~/Library/Preferences/com.adammorad.csvquicklook.plist"\nend\n' \
+          printf 'cask "csv-quick-look" do\n  version "%s"\n  sha256 "%s"\n\n  url "%s"\n  name "CSV Quick Look"\n  desc "QuickLook extension for CSV and TSV files"\n  homepage "https://github.com/adamorad/csv-quick-look"\n\n  depends_on macos: ">= :monterey"\n\n  app "CSV Quick Look.app"\n\n  uninstall quit: "com.adammorad.csvquicklook"\n\n  zap trash: "~/Library/Preferences/com.adammorad.csvquicklook.plist"\nend\n' \
             "$VERSION" "$SHA" "$URL" > Casks/csv-quick-look.rb
 
           git config user.email "github-actions[bot]@users.noreply.github.com"
