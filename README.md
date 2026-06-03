@@ -45,16 +45,32 @@ No dependencies. No network access. Fully sandboxed.
 
 ## Install
 
-CSV Quick Look is built from source — a two-minute process.
+### Homebrew (recommended)
 
-### 1. Clone
+```bash
+brew install --cask adamorad/tap/csv-quick-look
+```
+
+Then enable the extension:
+
+**System Settings → Privacy & Security → Extensions → Quick Look → enable CSV Quick Look**
+
+> On macOS 12–13: System Preferences → Extensions → Quick Look.
+
+---
+
+### Build from source
+
+If you prefer to build yourself (e.g. to customise the bundle ID):
+
+**1. Clone**
 
 ```bash
 git clone https://github.com/adamorad/csv-quick-look.git
 cd csv-quick-look
 ```
 
-### 2. Update the bundle ID
+**2. Update the bundle ID** *(optional)*
 
 In `project.yml`, change the `bundleIdPrefix` to your own reverse-domain:
 
@@ -63,23 +79,15 @@ options:
   bundleIdPrefix: com.yourname   # ← change this
 ```
 
-### 3. Open in Xcode and run
+**3. Open in Xcode and run**
 
 ```bash
 open CSVQuickLook.xcodeproj
 ```
 
-Select the **CSVQuickLook** scheme → **My Mac** → **⌘R**.
+Select the **CSVQuickLook** scheme → **My Mac** → **⌘R**. The app installs the extension on launch.
 
-The app installs the QuickLook extension on launch.
-
-> If you use [XcodeGen](https://github.com/yonaskolb/XcodeGen), run `xcodegen generate` after editing `project.yml` before opening Xcode.
-
-### 4. Enable the extension
-
-**System Settings → Privacy & Security → Extensions → Quick Look → enable CSV Quick Look**
-
-> On macOS 12–13: System Preferences → Extensions → Quick Look.
+**4. Enable the extension** as above.
 
 ## Settings
 
