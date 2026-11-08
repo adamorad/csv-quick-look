@@ -1,0 +1,11 @@
+To: df@daringfireball.net
+Subject: Tip: CSV Quick Look — modern QuickLook extension for CSV files on macOS
+
+Hi John,
+
+macOS Sequoia quietly killed the old .qlgenerator plugin format in 2024, which broke quicklook-csv — the only Quick Look extension for CSV files — and nobody replaced it for two years. I built CSV Quick Look, a native .appex extension: press Space on a CSV in Finder and you get a proper spreadsheet view with sortable columns, live search, and virtual scrolling that handles 500k-row files without stalling. No dependencies, fully sandboxed, works on macOS 12+.
+
+Install: brew install --cask adamorad/tap/csv-quick-look
+Source: https://github.com/adamorad/csv-quick-look
+
+— Adam
